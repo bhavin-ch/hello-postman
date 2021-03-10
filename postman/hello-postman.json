@@ -1,0 +1,458 @@
+{
+  "info": {
+    "_postman_id": "edddb1f4-17f1-4384-99ef-79d1f5c14193",
+    "name": "hello-postman",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "setup",
+      "item": [
+        {
+          "name": "/users (John Wick is born)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "da6896df-9be8-4473-a6d9-8c65910301fd",
+                "exec": [
+                  "const resBody = pm.response.json();",
+                  "const reqBody = pm.request.body[pm.request.body.mode];",
+                  "",
+                  "pm.environment.set(\"john_wick_id\", resBody.id);",
+                  "pm.environment.set(\"john_wick_body\", reqBody);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "3266e348-1008-4df2-a83c-c4f341edcc03",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Wick\",\n    \"city\": \"New York\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{host}}/users"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "a6e46027-cd31-49c1-837e-998e832275ab"
+    },
+    {
+      "name": "standalone-tests",
+      "item": [
+        {
+          "name": "root",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b3b2f8d4-9b8f-44a7-a27c-a85fc94bd696",
+                "exec": [
+                  "const body = pm.response.json();",
+                  "",
+                  "// 1. basic test",
+                  "pm.test(\"Status test\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// 2. test actual values",
+                  "pm.test(\"Test response body\", function () {",
+                  "    pm.expect(body).deep.equal({ title: \"Express\" });",
+                  "});",
+                  "",
+                  "// 3. validate json schema (can also be put in the environment!)",
+                  "const schema = {",
+                  "    type: \"object\",",
+                  "    properties: {",
+                  "        title: { type: \"string\" }",
+                  "    }",
+                  "};",
+                  "pm.test(\"Validate schema\", () => {",
+                  "    pm.response.to.have.jsonSchema(schema);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "d842134b-8590-4c74-826b-253ed2e42f37",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{host}}"
+          },
+          "response": []
+        },
+        {
+          "name": "/users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2864390a-b077-48a3-af4a-ad2f4ac9e5cc",
+                "exec": [
+                  "const body = pm.response.json();",
+                  "",
+                  "// 1. basic test",
+                  "pm.test(\"Status test\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// 2. test actual values",
+                  "pm.test(\"Status test\", function () {",
+                  "    pm.expect(body[0].name).to.equal('Lennart Johansson');",
+                  "});",
+                  "",
+                  "// 3. validate json schema (can also be put in the environment!)",
+                  "const userSchema = {",
+                  "    type: \"object\",",
+                  "    properties: {",
+                  "        id: { type: \"number\" },",
+                  "        name: { type: \"string\" },",
+                  "        city: { type: \"string\" }",
+                  "    }",
+                  "};",
+                  "const schema = {",
+                  "    type: \"array\",",
+                  "    \"items\": [userSchema]",
+                  "}",
+                  "pm.test(\"Validate body schema\", () => {",
+                  "    pm.response.to.have.jsonSchema(schema);",
+                  "});",
+                  "pm.test(\"Validate user schema\", () => {",
+                  "    body.forEach(function (user) {",
+                  "        pm.expect(user).to.have.jsonSchema(userSchema);",
+                  "    });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "4f8efb09-da17-4db1-8984-49d139eb96ea",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{host}}/users"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "dd003c76-8351-4de1-86b2-e9d9ce170a32"
+    },
+    {
+      "name": "ordered-tests",
+      "item": [
+        {
+          "name": "/users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "70bfdc13-18bf-4539-8394-f85ce5c14994",
+                "exec": [
+                  "const users = pm.response.json();",
+                  "",
+                  "",
+                  "// 1. basic test",
+                  "pm.test(\"Get 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// 2. store number of users in the environment",
+                  "pm.environment.set(\"no_of_users\", JSON.stringify(users.length));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "1c0b319d-dd69-42a1-9041-c08db93361f8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{host}}/users"
+          },
+          "response": []
+        },
+        {
+          "name": "/users (Pinkman is born)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "01daaf21-09eb-4b07-bec8-34de4018b47e",
+                "exec": [
+                  "const resBody = pm.response.json();",
+                  "const reqBody = pm.request.body[pm.request.body.mode];",
+                  "",
+                  "// 1. basic test",
+                  "pm.test(\"Get 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.environment.set(\"jesse_pinkman_id\", resBody.id);",
+                  "pm.environment.set(\"jesse_pinkman_body\", reqBody);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "9ad3ffdb-519f-435b-8ce9-1e49ce11b9b5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Jesse Pinkman\",\n    \"city\": \"Anchorage, Alaska\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{host}}/users"
+          },
+          "response": []
+        },
+        {
+          "name": "/users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "36424fc7-28d8-46f0-9b43-19469085937b",
+                "exec": [
+                  "const users = pm.response.json();",
+                  "",
+                  "// store number of users in the environment",
+                  "const no_of_users = Number(pm.environment.get(\"no_of_users\"));",
+                  "const pinkman_id = Number(pm.environment.get(\"jesse_pinkman_id\"));",
+                  "const pinkman_body = JSON.parse(pm.environment.get(\"jesse_pinkman_body\"));",
+                  "",
+                  "// 1. basic test",
+                  "pm.test(\"Get 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// 2. test number of users",
+                  "pm.test(\"Test number of users now\", function () {",
+                  "    pm.expect(users.length).to.equal(no_of_users + 1);",
+                  "});",
+                  "",
+                  "// 3. look for Pinkman",
+                  "pm.test(\"look for Pinkman\", function () {",
+                  "    const pinkmanIndex = users.findIndex(function (user) { return user.id === pinkman_id});",
+                  "    console.log(users);",
+                  "    console.log(pinkmanIndex);",
+                  "    pm.expect(pinkmanIndex).to.not.equal(-1);",
+                  "    pm.expect(users[pinkmanIndex]).deep.equal(Object.assign(pinkman_body, { id: pinkman_id }));",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "f9cb94e4-21f7-40c1-8e75-c475c90c6b72",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{host}}/users"
+          },
+          "response": []
+        },
+        {
+          "name": "/users (Pinkman dies)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "df545adb-69dd-4ef7-82d8-a2ba8353c446",
+                "exec": [
+                  "const resBody = pm.response.json();",
+                  "const reqBody = pm.request.body[pm.request.body.mode];",
+                  "",
+                  "const pinkman_id = Number(pm.environment.get(\"jesse_pinkman_id\"));",
+                  "",
+                  "// 1. basic test",
+                  "pm.test(\"Get 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// 2. validate Pinkman id",
+                  "pm.test(\"validate Pinkman id\", function () {",
+                  "    pm.expect(resBody.id).to.not.equal(pinkman_id);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "1660005b-c14f-498e-9e99-aa011c991c68",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Jesse Pinkman\",\n    \"city\": \"Anchorage, Alaska\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{host}}/users/{{jesse_pinkman_id}}"
+          },
+          "response": []
+        },
+        {
+          "name": "/users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "1dc6292a-f4ab-47b6-b338-ffc893609004",
+                "exec": [
+                  "const users = pm.response.json();",
+                  "",
+                  "// store number of users in the environment",
+                  "const no_of_users = Number(pm.environment.get(\"no_of_users\"));",
+                  "const pinkman_id = Number(pm.environment.get(\"jesse_pinkman_id\"));",
+                  "",
+                  "// 1. basic test",
+                  "pm.test(\"Get 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// 2. test number of users",
+                  "pm.test(\"Test number of users now\", function () {",
+                  "    pm.expect(users.length).to.equal(no_of_users);",
+                  "});",
+                  "",
+                  "// 3. check if Pinkman is dead",
+                  "pm.test(\"check if Pinkman is dead\", function () {",
+                  "    const pinkmanIndex = users.findIndex(function (user) { return user.id === pinkman_id});",
+                  "    pm.expect(pinkmanIndex).to.equal(-1);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "2c1e2b58-dac1-49a7-a2f5-bb06b475a709",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{host}}/users"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "077d717b-d58f-43df-90ad-f3789c06938f"
+    },
+    {
+      "name": "integration-test",
+      "item": [
+        {
+          "name": "/users/:id",
+          "_postman_id": "e544a886-7b60-4709-bba6-00e9358ea77b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{host}}/users/{{john_wick_id}}"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "b836f2fc-9ef0-4b9a-bfc1-d3d126e922f7"
+    },
+    {
+      "name": "teardown",
+      "item": [
+        {
+          "name": "/users/:id (John Wick dies)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "cd4c87f2-da07-4529-b33e-9f3079e24418",
+                "exec": [
+                  "const resBody = pm.response.json();",
+                  "const reqBody = pm.request.body[pm.request.body.mode];",
+                  "",
+                  "const john_wick_id = Number(pm.environment.get(\"john_wick_id\"));",
+                  "",
+                  "// 1. basic test",
+                  "pm.test(\"Get 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// 2. validate Pinkman id",
+                  "pm.test(\"validate Pinkman id\", function () {",
+                  "    pm.expect(resBody.id).to.not.equal(john_wick_id);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "49e006d7-9b88-42ab-bd84-8e15af7002e5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{host}}/users/{{john_wick_id}}"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "e83bd148-dacc-47a5-a800-3ce3a3789ad2"
+    }
+  ]
+}
