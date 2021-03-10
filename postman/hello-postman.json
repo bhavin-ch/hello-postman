@@ -261,7 +261,7 @@
                   "",
                   "// 2. test number of users",
                   "pm.test(\"Test number of users now\", function () {",
-                  "    pm.expect(users.length).to.equal(no_of_users + 2);",
+                  "    pm.expect(users.length).to.equal(no_of_users + 1);",
                   "});",
                   "",
                   "// 3. look for Pinkman",
