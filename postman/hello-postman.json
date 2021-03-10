@@ -26,7 +26,7 @@
               }
             }
           ],
-          "_postman_id": "3266e348-1008-4df2-a83c-c4f341edcc03",
+          "id": "3266e348-1008-4df2-a83c-c4f341edcc03",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -47,7 +47,7 @@
           "response": []
         }
       ],
-      "_postman_id": "a6e46027-cd31-49c1-837e-998e832275ab"
+      "id": "a6e46027-cd31-49c1-837e-998e832275ab"
     },
     {
       "name": "standalone-tests",
@@ -80,6 +80,7 @@
                   "    }",
                   "};",
                   "pm.test(\"Validate schema\", () => {",
+                  "    console.log(pm.response);",
                   "    pm.response.to.have.jsonSchema(schema);",
                   "});"
                 ],
@@ -87,7 +88,7 @@
               }
             }
           ],
-          "_postman_id": "d842134b-8590-4c74-826b-253ed2e42f37",
+          "id": "d842134b-8590-4c74-826b-253ed2e42f37",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -144,7 +145,7 @@
               }
             }
           ],
-          "_postman_id": "4f8efb09-da17-4db1-8984-49d139eb96ea",
+          "id": "4f8efb09-da17-4db1-8984-49d139eb96ea",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -156,7 +157,7 @@
           "response": []
         }
       ],
-      "_postman_id": "dd003c76-8351-4de1-86b2-e9d9ce170a32"
+      "id": "dd003c76-8351-4de1-86b2-e9d9ce170a32"
     },
     {
       "name": "ordered-tests",
@@ -184,7 +185,7 @@
               }
             }
           ],
-          "_postman_id": "1c0b319d-dd69-42a1-9041-c08db93361f8",
+          "id": "1c0b319d-dd69-42a1-9041-c08db93361f8",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -218,7 +219,7 @@
               }
             }
           ],
-          "_postman_id": "9ad3ffdb-519f-435b-8ce9-1e49ce11b9b5",
+          "id": "9ad3ffdb-519f-435b-8ce9-1e49ce11b9b5",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -276,7 +277,7 @@
               }
             }
           ],
-          "_postman_id": "f9cb94e4-21f7-40c1-8e75-c475c90c6b72",
+          "id": "f9cb94e4-21f7-40c1-8e75-c475c90c6b72",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -314,7 +315,7 @@
               }
             }
           ],
-          "_postman_id": "1660005b-c14f-498e-9e99-aa011c991c68",
+          "id": "1660005b-c14f-498e-9e99-aa011c991c68",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -368,7 +369,7 @@
               }
             }
           ],
-          "_postman_id": "2c1e2b58-dac1-49a7-a2f5-bb06b475a709",
+          "id": "2c1e2b58-dac1-49a7-a2f5-bb06b475a709",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -380,14 +381,14 @@
           "response": []
         }
       ],
-      "_postman_id": "077d717b-d58f-43df-90ad-f3789c06938f"
+      "id": "077d717b-d58f-43df-90ad-f3789c06938f"
     },
     {
       "name": "integration-test",
       "item": [
         {
           "name": "/users/:id",
-          "_postman_id": "e544a886-7b60-4709-bba6-00e9358ea77b",
+          "id": "e544a886-7b60-4709-bba6-00e9358ea77b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -399,7 +400,7 @@
           "response": []
         }
       ],
-      "_postman_id": "b836f2fc-9ef0-4b9a-bfc1-d3d126e922f7"
+      "id": "b836f2fc-9ef0-4b9a-bfc1-d3d126e922f7"
     },
     {
       "name": "teardown",
@@ -431,7 +432,7 @@
               }
             }
           ],
-          "_postman_id": "49e006d7-9b88-42ab-bd84-8e15af7002e5",
+          "id": "49e006d7-9b88-42ab-bd84-8e15af7002e5",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -452,7 +453,29 @@
           "response": []
         }
       ],
-      "_postman_id": "e83bd148-dacc-47a5-a800-3ce3a3789ad2"
+      "id": "e83bd148-dacc-47a5-a800-3ce3a3789ad2"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "356f7607-abfe-4bb3-bb6b-73b731fcb023",
+        "type": "text/javascript",
+        "exec": [
+          "console.log('this is pre');"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "92cd10cc-14e8-4e06-92fe-02bbd5bd0080",
+        "type": "text/javascript",
+        "exec": [
+          "console.log('this is post');"
+        ]
+      }
     }
   ]
 }
