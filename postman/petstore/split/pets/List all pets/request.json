@@ -1,0 +1,20 @@
+{
+  "method": "GET",
+  "header": [],
+  "url": {
+    "raw": "{{baseUrl}}/pets?limit=<integer>",
+    "host": [
+      "{{baseUrl}}"
+    ],
+    "path": [
+      "pets"
+    ],
+    "query": [
+      {
+        "key": "limit",
+        "value": "<integer>",
+        "description": "How many items to return at one time (max 100)"
+      }
+    ]
+  }
+}

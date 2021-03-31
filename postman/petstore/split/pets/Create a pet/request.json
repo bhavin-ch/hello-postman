@@ -1,0 +1,13 @@
+{
+  "method": "POST",
+  "header": [],
+  "url": {
+    "raw": "{{baseUrl}}/pets",
+    "host": [
+      "{{baseUrl}}"
+    ],
+    "path": [
+      "pets"
+    ]
+  }
+}

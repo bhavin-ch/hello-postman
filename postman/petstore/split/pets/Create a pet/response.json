@@ -1,0 +1,60 @@
+[
+  {
+    "id": "2956f19c-32e1-4dd7-b374-fe9ad0b09047",
+    "name": "unexpected error",
+    "originalRequest": {
+      "method": "POST",
+      "header": [],
+      "url": {
+        "raw": "{{baseUrl}}/pets",
+        "host": [
+          "{{baseUrl}}"
+        ],
+        "path": [
+          "pets"
+        ]
+      }
+    },
+    "status": "Internal Server Error",
+    "code": 500,
+    "_postman_previewlanguage": "json",
+    "header": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "cookie": [],
+    "responseTime": null,
+    "body": "{\n \"code\": -67146599,\n \"message\": \"consequat deserunt\"\n}"
+  },
+  {
+    "id": "ada20794-65d7-414e-8cac-b70a8af92a91",
+    "name": "Null response",
+    "originalRequest": {
+      "method": "POST",
+      "header": [],
+      "url": {
+        "raw": "{{baseUrl}}/pets",
+        "host": [
+          "{{baseUrl}}"
+        ],
+        "path": [
+          "pets"
+        ]
+      }
+    },
+    "status": "Created",
+    "code": 201,
+    "_postman_previewlanguage": "text",
+    "header": [
+      {
+        "key": "Content-Type",
+        "value": "text/plain"
+      }
+    ],
+    "cookie": [],
+    "responseTime": null,
+    "body": ""
+  }
+]

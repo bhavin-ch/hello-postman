@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "postman:convert": "rm -f postman/petstore.json && node ./collection-convertor.js",
+    "postman:convert:petstore": "node ./collection-convertor.js petstore petstore.yaml \"Swagger Petstore.postman_collection.json\"",
+    "pm": "node_modules/.bin/postman",
     "test": "mocha"
   },
   "dependencies": {
@@ -18,7 +19,9 @@
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
+    "@matt.ball/postman-cli": "^0.1.2",
     "mocha": "^5.1.1",
+    "rimraf": "^3.0.2",
     "supertest": "^3.0.0"
   }
 }

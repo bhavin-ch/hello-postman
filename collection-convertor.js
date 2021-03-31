@@ -1,8 +1,12 @@
 const fs = require('fs');
+const rimraf = require('rimraf');
 const Converter = require('openapi-to-postmanv2');
-const openapiData = fs.readFileSync(`${process.cwd()}/petstore.yaml`, { encoding: 'utf-8' });
+const project = process.argv[2];
+const openapiSpecFile = `${process.cwd()}/postman/${project}/${process.argv[3]}`;
+const postmanCollectionFile = `${process.cwd()}/postman/${project}/${process.argv[4]}`;
 
-// Converter.convert({ type: 'file', data: `${process.cwd()}/petstore.yaml` }, {
+const openapiData = fs.readFileSync(openapiSpecFile, { encoding: 'utf-8' });
+
 Converter.convert({ type: 'string', data: openapiData }, {
     collapseFolders: false,
     folderStrategy: 'Paths'
@@ -10,8 +14,8 @@ Converter.convert({ type: 'string', data: openapiData }, {
     if (!conversionResult.result) {
         console.log('Could not convert', conversionResult.reason);
     } else {
-        // console.log('The collection object is: ', JSON.stringify(conversionResult.output, null, 2));
-        fs.writeFileSync(`${process.cwd()}/postman/petstore.json`, JSON.stringify(conversionResult.output[0].data, null, 2), { flag: 'wx' });
+        rimraf.sync(postmanCollectionFile);
+        fs.writeFileSync(postmanCollectionFile, JSON.stringify(conversionResult.output[0].data, null, 2), { flag: 'wx' });
     }
   }
 );

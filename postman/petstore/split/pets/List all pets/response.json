@@ -1,0 +1,78 @@
+[
+  {
+    "id": "73ba73c3-1101-426a-869d-c7e2ce89bd9f",
+    "name": "unexpected error",
+    "originalRequest": {
+      "method": "GET",
+      "header": [],
+      "url": {
+        "raw": "{{baseUrl}}/pets?limit=<integer>",
+        "host": [
+          "{{baseUrl}}"
+        ],
+        "path": [
+          "pets"
+        ],
+        "query": [
+          {
+            "key": "limit",
+            "value": "<integer>"
+          }
+        ]
+      }
+    },
+    "status": "Internal Server Error",
+    "code": 500,
+    "_postman_previewlanguage": "json",
+    "header": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "cookie": [],
+    "responseTime": null,
+    "body": "{\n \"code\": -67146599,\n \"message\": \"consequat deserunt\"\n}"
+  },
+  {
+    "id": "f0f9d10a-1e14-4d63-9754-4f8db3f764fb",
+    "name": "A paged array of pets",
+    "originalRequest": {
+      "method": "GET",
+      "header": [],
+      "url": {
+        "raw": "{{baseUrl}}/pets?limit=<integer>",
+        "host": [
+          "{{baseUrl}}"
+        ],
+        "path": [
+          "pets"
+        ],
+        "query": [
+          {
+            "key": "limit",
+            "value": "<integer>"
+          }
+        ]
+      }
+    },
+    "status": "OK",
+    "code": 200,
+    "_postman_previewlanguage": "json",
+    "header": [
+      {
+        "disabled": false,
+        "description": "A link to the next page of responses",
+        "key": "x-next",
+        "value": "laboris pariatur nostrud"
+      },
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "cookie": [],
+    "responseTime": null,
+    "body": "[\n {\n  \"id\": 54467962,\n  \"name\": \"qui nostrud\",\n  \"tag\": \"id\"\n },\n {\n  \"id\": 71758417,\n  \"name\": \"commodo ea\",\n  \"tag\": \"ad proident esse do\"\n }\n]"
+  }
+]
