@@ -460,7 +460,7 @@
     {
       "listen": "prerequest",
       "script": {
-        "id": "356f7607-abfe-4bb3-bb6b-73b731fcb023",
+        "id": "05b46d76-6375-4015-9447-232d0303d165",
         "type": "text/javascript",
         "exec": [
           "console.log('this is pre');"
@@ -470,12 +470,44 @@
     {
       "listen": "test",
       "script": {
-        "id": "92cd10cc-14e8-4e06-92fe-02bbd5bd0080",
+        "id": "d4a1bad2-29e6-48e0-b5a9-738de7d2635b",
         "type": "text/javascript",
         "exec": [
           "console.log('this is post');"
         ]
       }
+    }
+  ],
+  "variable": [
+    {
+      "id": "809bc253-1f34-404d-bf27-e745977cc092",
+      "key": "host",
+      "value": "http://localhost:4000"
+    },
+    {
+      "id": "5e0689af-7a9f-4693-9fe1-0628586f4ee3",
+      "key": "john_wick_id",
+      "value": "4"
+    },
+    {
+      "id": "1b26a89b-21db-4e03-a835-181b0b4427ab",
+      "key": "john_wick_body",
+      "value": "{\n\"name\": \"John Wick\",\n\"city\": \"New York\"\n}"
+    },
+    {
+      "id": "2757b235-eb85-4a60-ae38-22d662a95613",
+      "key": "no_of_users",
+      "value": "5"
+    },
+    {
+      "id": "43b15221-1a8f-433c-b11c-dc0bf49ed133",
+      "key": "jesse_pinkman_id",
+      "value": "5"
+    },
+    {
+      "id": "7a950e4f-0bd2-44f0-afd9-29aade95afe7",
+      "key": "jesse_pinkman_body",
+      "value": "{\n\"name\": \"Jesse Pinkman\",\n\"city\": \"Anchorage, Alaska\"\n}"
     }
   ]
 }
