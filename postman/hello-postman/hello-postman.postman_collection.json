@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "edddb1f4-17f1-4384-99ef-79d1f5c14193",
     "name": "hello-postman",
-    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
@@ -42,7 +42,15 @@
                 }
               }
             },
-            "url": "{{host}}/users"
+            "url": {
+              "raw": "{{host}}/users",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
           },
           "response": []
         }
@@ -95,7 +103,12 @@
           "request": {
             "method": "GET",
             "header": [],
-            "url": "{{host}}"
+            "url": {
+              "raw": "{{host}}",
+              "host": [
+                "{{host}}"
+              ]
+            }
           },
           "response": []
         },
@@ -152,7 +165,15 @@
           "request": {
             "method": "GET",
             "header": [],
-            "url": "{{host}}/users"
+            "url": {
+              "raw": "{{host}}/users",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
           },
           "response": []
         }
@@ -192,7 +213,15 @@
           "request": {
             "method": "GET",
             "header": [],
-            "url": "{{host}}/users"
+            "url": {
+              "raw": "{{host}}/users",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
           },
           "response": []
         },
@@ -235,7 +264,15 @@
                 }
               }
             },
-            "url": "{{host}}/users"
+            "url": {
+              "raw": "{{host}}/users",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
           },
           "response": []
         },
@@ -284,7 +321,15 @@
           "request": {
             "method": "GET",
             "header": [],
-            "url": "{{host}}/users"
+            "url": {
+              "raw": "{{host}}/users",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
           },
           "response": []
         },
@@ -331,7 +376,16 @@
                 }
               }
             },
-            "url": "{{host}}/users/{{jesse_pinkman_id}}"
+            "url": {
+              "raw": "{{host}}/users/{{jesse_pinkman_id}}",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users",
+                "{{jesse_pinkman_id}}"
+              ]
+            }
           },
           "response": []
         },
@@ -376,7 +430,15 @@
           "request": {
             "method": "GET",
             "header": [],
-            "url": "{{host}}/users"
+            "url": {
+              "raw": "{{host}}/users",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
           },
           "response": []
         }
@@ -395,7 +457,16 @@
           "request": {
             "method": "GET",
             "header": [],
-            "url": "{{host}}/users/{{john_wick_id}}"
+            "url": {
+              "raw": "{{host}}/users/{{john_wick_id}}",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users",
+                "{{john_wick_id}}"
+              ]
+            }
           },
           "response": []
         }
@@ -448,7 +519,16 @@
                 }
               }
             },
-            "url": "{{host}}/users/{{john_wick_id}}"
+            "url": {
+              "raw": "{{host}}/users/{{john_wick_id}}",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "users",
+                "{{john_wick_id}}"
+              ]
+            }
           },
           "response": []
         }
@@ -460,7 +540,7 @@
     {
       "listen": "prerequest",
       "script": {
-        "id": "356f7607-abfe-4bb3-bb6b-73b731fcb023",
+        "id": "05b46d76-6375-4015-9447-232d0303d165",
         "type": "text/javascript",
         "exec": [
           "console.log('this is pre');"
@@ -470,12 +550,44 @@
     {
       "listen": "test",
       "script": {
-        "id": "92cd10cc-14e8-4e06-92fe-02bbd5bd0080",
+        "id": "d4a1bad2-29e6-48e0-b5a9-738de7d2635b",
         "type": "text/javascript",
         "exec": [
           "console.log('this is post');"
         ]
       }
+    }
+  ],
+  "variable": [
+    {
+      "id": "2286cce5-21a2-4fbf-9b10-dd825b765c9b",
+      "key": "host",
+      "value": "http://localhost:4000"
+    },
+    {
+      "id": "dc91c67d-28d0-498e-b515-409519f8e766",
+      "key": "john_wick_id",
+      "value": "4"
+    },
+    {
+      "id": "21ac13b8-42cc-4cc3-9342-78af441b2b40",
+      "key": "john_wick_body",
+      "value": "{\n\"name\": \"John Wick\",\n\"city\": \"New York\"\n}"
+    },
+    {
+      "id": "0a309254-a88c-4129-b672-fc2a838923c6",
+      "key": "no_of_users",
+      "value": "5"
+    },
+    {
+      "id": "3ceca943-86a5-4f5f-a1ee-f0a98d3a4512",
+      "key": "jesse_pinkman_id",
+      "value": "5"
+    },
+    {
+      "id": "4a45829d-5499-422d-ac9a-2e1783fa13cb",
+      "key": "jesse_pinkman_body",
+      "value": "{\n\"name\": \"Jesse Pinkman\",\n\"city\": \"Anchorage, Alaska\"\n}"
     }
   ]
 }

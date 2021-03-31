@@ -1,0 +1,23 @@
+{
+  "method": "DELETE",
+  "header": [],
+  "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+      "raw": {
+        "language": "json"
+      }
+    }
+  },
+  "url": {
+    "raw": "{{host}}/users/{{john_wick_id}}",
+    "host": [
+      "{{host}}"
+    ],
+    "path": [
+      "users",
+      "{{john_wick_id}}"
+    ]
+  }
+}

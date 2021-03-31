@@ -1,0 +1,14 @@
+{
+  "method": "GET",
+  "header": [],
+  "url": {
+    "raw": "{{host}}/users/{{john_wick_id}}",
+    "host": [
+      "{{host}}"
+    ],
+    "path": [
+      "users",
+      "{{john_wick_id}}"
+    ]
+  }
+}

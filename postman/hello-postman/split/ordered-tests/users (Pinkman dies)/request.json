@@ -1,0 +1,23 @@
+{
+  "method": "DELETE",
+  "header": [],
+  "body": {
+    "mode": "raw",
+    "raw": "{\n    \"name\": \"Jesse Pinkman\",\n    \"city\": \"Anchorage, Alaska\"\n}",
+    "options": {
+      "raw": {
+        "language": "json"
+      }
+    }
+  },
+  "url": {
+    "raw": "{{host}}/users/{{jesse_pinkman_id}}",
+    "host": [
+      "{{host}}"
+    ],
+    "path": [
+      "users",
+      "{{jesse_pinkman_id}}"
+    ]
+  }
+}

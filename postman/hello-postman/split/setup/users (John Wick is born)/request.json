@@ -1,0 +1,22 @@
+{
+  "method": "POST",
+  "header": [],
+  "body": {
+    "mode": "raw",
+    "raw": "{\n    \"name\": \"John Wick\",\n    \"city\": \"New York\"\n}",
+    "options": {
+      "raw": {
+        "language": "json"
+      }
+    }
+  },
+  "url": {
+    "raw": "{{host}}/users",
+    "host": [
+      "{{host}}"
+    ],
+    "path": [
+      "users"
+    ]
+  }
+}
